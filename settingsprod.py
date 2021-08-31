@@ -44,7 +44,7 @@ AUTH_USER_MODEL = 'authentication.User'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['63.250.41.203', 'rumplesweb.xyz', 'www.rumplesweb.xyz']
+ALLOWED_HOSTS = ['63.250.41.203', 'rumples.co', 'www.rumples.co']
 
 TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 

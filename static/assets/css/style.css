@@ -14,12 +14,40 @@ body {
   height: 500px;
   background-repeat: no-repeat;
 }
-.banner-img{
-background: url(../img/deliver.png);
-background-size: cover;
-background-position: center;
-height: 500px;
-background-repeat: no-repeat;
+.about-image{
+  background: url(../img/banner/about.png);
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  background-repeat: no-repeat;
+}
+.delivery-image{
+  background: url(../img/banner/delivery.png);
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  background-repeat: no-repeat;
+}
+.sales-image{
+  background: url(../img/banner/terms.png);
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  background-repeat: no-repeat;
+}
+.return-image{
+  background: url(../img/banner/returns.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  background-repeat: no-repeat;
+}
+.faq-image{
+  background: url(../img/banner/faq.png);
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  background-repeat: no-repeat;
 }
 /* ============ first section ============*/
 .color1{

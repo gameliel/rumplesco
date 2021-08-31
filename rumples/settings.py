@@ -38,13 +38,13 @@ SECRET_KEY = 'hy@@^j(ita$-q&1*1+gr!mje4_2cc!z4d8u8q8_z(y@2e(vm*1'
 
 AUTH_USER_MODEL = 'authentication.User'
 
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
-# DEBUG = False
+DEBUG = False
 
-# ALLOWED_HOSTS = ['63.250.41.203', 'rumplesweb.xyz', 'www.rumplesweb.xyz']
+ALLOWED_HOSTS = ['63.250.41.203', 'rumples.co', 'www.rumples.co']
 
 TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
