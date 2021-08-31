@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Welcome | {% endblock %}
+
+{% block content %}
+<!-- begining of carusel -->
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div class="container">
+      <div class="text-background" style="margin-top: 100px;">
+        <h2 class="col-md-7 mx-auto text-black " style="font-size: 50px;">Up to 30% off </h2>      
+        <p class="h5 col-md-7 mx-auto pb-5 mb-5 text-black-50 aa">Hello.. {{ request.user.get_username }} Save on your first order on our  first grade Okrika Shirts when you sign up</p>
+        <div class="load-more">
+          <a href="#product" class="btn btn-outline-primary load-more">START PICKING</a>
+      </div>
+      </div>
+    </div>       
+  </div>
+  <div class="col-md-6 col-sm-12">
+    <div class="banner-image pb-5">
+      <div class="container py-5">
+        <div class="row py-5 align-items-center">
+             
+        </div>
+      </div>
+    </div>
+  </div>   
+</div>
+<!-- end of carusel -->
+<section>
+  <div class="container prod-list">
+    <div class="header">
+      <h1 class="trend-pick">TRENDING PICK</h1>
+    </div>
+    <div class="row first-row">
+
+    {% with products as list_products %}
+        {% include 'parts/product_list.html' %}
+    {% endwith %}
+    <div class="text-center load-more">
+        <a href="{% url 'listing' %}" class="btn btn-outline-primary load-more">START PICKING</a>
+    </div>
+    </div>
+  </div>
+</section>
+         </div>
+     </div>
+     <!-- end of first section  -->
+     <!-- Work collection -->
+     <div class="container work-collection">
+       <div class="row">
+         <div class="col-md-6 col-sm-12">
+           <div class="work">
+               <h5 class="back-2-work">back to work collection</h5>
+               <h1 class="start-shopping">Start shopping <br>your new <br>outfit</h1>
+               <h1 class="outfit-price">N3999</h1>
+
+                <a href="#product" class="btn btn-primary load-more">START PICKING</a>
+           </div>
+         </div>
+         <div class="col-md-6 col-sm-12 work-img">
+           <img src="{% static 'assets/img/banner/model 1.png' %}" class="animate__animated animate__bounce animate_slow d-block w-100" alt="">
+         </div>
+       </div>
+     </div>
+     <!-- End of work collection -->
+
+     <!-- First grade casual -->
+     <div class="container first-grade">
+       <div class="row">
+         <div class="col-md-6 col-sm-12">
+           <div class="fgc">
+             <img src="{% static 'assets/img/banner/shoe-819363_1920.jpg' %}" class="animate__animated animate__bounce animate_slow d-block w-100" alt="">
+           </div>
+         </div>
+         <div class="col-md-6 col-sm-12 first-grade">
+           <div class="fgc-txt">
+             <h5 class="back-2-work">First Grade casual</h5>
+             <h1 class="start-shopping">Dressing Casual <br>Doesn't have to <br>be Expensive!</h1>
+             <h1 class="outfit-price">N3999</h1>
+
+             <a href="#product" class="btn btn-primary load-more">START PICKING</a>
+           </div>
+         </div>
+       </div>
+     </div>
+     <!-- end of first grade -->
+
+     <!-- video section -->
+     <div class="video">
+       <video controls>
+         <source src="{% static 'assets/video/VID-20201004-WA0005.mp4' %}" type="video/mp4">
+         Your browser does not support HTML5 video.
+       </video>
+     </div>
+     <!-- end of video section -->
+
+     <!-- whatsapp section -->
+     {% include 'parts/whatsapp.html' %}
+     <!-- end of whatsapp section -->
+     <!-- from IG -->
+     <div class="instagram">
+       <div class="container text-center">
+         <h3 class="ig-experience">Share your Rumple Experience #Rumples</h3>
+         <p> <img src="{% static 'assets/img/029-instagram.svg'%}" class="ig" alt=""> Follow <b>@Rumplesandco</b> for inspiration. </p>
+       </div>
+       <div class="container">
+         <div class="row">
+           <div class="col-md-2 col-sm-12">
+             <img src="{% static 'assets/img/download (2).jpeg' %}" class="d-block w-100" alt="">
+           </div>
+           <div class="col-md-2 col-sm-12">
+             <img src="{% static 'assets/img/download (3).jpeg' %}" class="d-block w-100" alt="">
+           </div>
+           <div class="col-md-2 col-sm-12">
+             <img src="{% static 'assets/img/images.jpeg'%}" class="d-block w-100" alt="">
+           </div>
+           <div class="col-md-2 col-sm-12">
+             <img src="{% static 'assets/img/download (2).jpeg' %}" class="d-block w-100" alt="">
+           </div>
+           <div class="col-md-2 col-sm-12">
+             <img src="{% static 'assets/img/download (3).jpeg' %}" class="d-block w-100" alt="">
+           </div>
+           <div class="col-md-2 col-sm-12">
+             <img src="{% static 'assets/img/images.jpeg' %}" class="d-block w-100" alt="">
+           </div>
+         </div>
+       </div>
+
+     </div>
+     <!-- end of IG section -->
+     <!-- horizontal line -->
+     <div class="container">
+       <hr>
+     </div>
+     <!-- end of horizontal line -->
+   {% endblock %}

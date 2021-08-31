@@ -1,0 +1,610 @@
+{% extends 'base2.html' %}
+
+{% block title %}Cart | {% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <div id="cartapp">
+      <!-- users nav -->
+      {% include '_partials/simplenav.html' %}
+    <!-- end of users nav -->
+        <!-- <h1 class="title">Cart</h1> -->
+
+        {% if cart %}
+            <div v-if="products.length > 0">
+                <div class="container">
+                    <div class="cart-detail">
+                        <div class="row ">
+                            <div class="col-md-9 col-sm-12" >
+                                <div class="row" v-for="product in products">
+                                    <div class="col-md-4 col-sm-12 prodimagegrid">
+                                        <div class="prodimgcard card1">
+                                                <img src="{{ product.thumbnail.url }}" class="prodimage" alt="missing">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-sm-12" style="margin-bottom:1em;">
+                                        <div class="prod-detail-card card1">
+                                            <div class="container">
+                                                <a href="" @click="removeFromCart(product.id)"><i class="far fa-times-circle"></i></a>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="clock-bg">
+                                                            <i class="far fa-clock"></i>
+                                                            <p class="time-interval">300s</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7 details">
+                                                        <p class="cart-prod-title cart-display"> [[ product.title ]]</p>
+                                                        <p class="cart-prod-price cart-display">N[[ product.total_price ]]</p>
+                                                        <hr class="cart-hr">
+                                                        {% if  accept_alteration %}
+                                                            <div class="alt-prod">
+                                                                <p class="additional-prod prod1">[[ product.accept_alteration ]]</p>
+                                                                <p class="cart-prod-price additional-prod additional-prod">1232</p>
+                                                                <input type="submit" class="btn btn-danger additional-prod">
+                                                            </div>
+                                                            <div class="alt-prod2">
+                                                                <p class="additional-prod prod2">Alteration item to spec</p>
+                                                                <p class="cart-prod-price additional-prod additional-prod">N1500</p>
+                                                                <input type="submit" class="btn btn-outline-danger additional-prod">
+                                                            </div>
+                                                        {% else %}
+                                                        <p>No Alteration</p>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                            <!-- promo code -->
+                            <div class="col-md-3 col-sm-12">
+                              <div class="summary-display-card card1">
+                                <div class="container-fluid">
+                                <input type="hidden" v-model="coupon_value">
+            
+                                <h2 class="subtitle">Coupon code</h2>
+            
+                                <div class="field has-addons">
+                                    <div class="control">
+                                        <input type="text" v-model="coupon_code" class="form-control">
+                                    </div>
+            
+                                    <div class="control">
+                                        <button @click="applyCoupon()" class="btn btn-primary">Apply</button>
+                                    </div>
+                                </div>
+            
+                                <div class="notification is-warning" v-if="showCouponCodeError">
+                                    <p>The coupon code is not valid!</p>
+                                </div>
+                                <p class="title">Summary</p>
+                                <!-- <p class="title summary-display">Price (3 items)</p>
+                                <p class="summary-prod-price summary-display">{{ product.price }}</p> -->
+                                <table class="table table-sm table-borderless">
+                                  <tbody v-for="product in products">
+                                    <tr class="">
+                                    <td>[[product.title ]]</td>
+                                    <td>[[ product.total_price ]]</td>
+                                    <!-- {{ product.}} -->
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <p class="" style="font-size: 13px;">Total: <span>{{  cart.get_total_cost }}</span> </p>
+                                <div v-if="coupon_value">
+                                    <p colspan="3">Total cost with coupon:</p>
+                                    <p>[[ totalCostWithCoupon ]]</p>
+                                </div>
+                                <hr class="summary-hr">
+                                <form>
+                                    <div class="field">
+                                        <div class="control">
+                                            <!-- <a href="{% url 'checkout' %}" type="button" class="btn btn-primary btn-block">Check out</a> -->
+                                        </div>
+                                    </div>
+                                </form>
+                                </div>
+                              </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="container">
+                    {% if not request.user.is_authenticated %}
+                    
+                    <p>Continue as guest or <a class="auth" href="{% url 'login' %}">log in</a> / <a class="auth" href="{% url 'signup' %}">sign up</a>.</p>
+                
+                {% endif %}
+
+                <!-- contact info -->
+                 <h2 class="title">Contact information</h2>
+
+                <div class="columns">
+                    <div class="column is-6">
+                        <div class="field">
+                            <label>First name</label>
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="first_name" v-model="first_name">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Last name</label>
+
+                            <div class="form-group">
+                                <input class="input form-control" type="text" name="last_name" v-model="last_name">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>E-mail</label>
+
+                            <div class="form-group">
+                                <input class="form-control" type="email" name="email" v-model="email">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Phone</label>
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="phone" v-model="phone">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-6">
+                        <div class="field">
+                            <label>Address</label>
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="address" v-model="address">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Zip code</label>
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="zipcode" v-model="zipcode">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Place</label>
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="place" v-model="place">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <button class="btn btn-primary" v-on:click="buy('stripe')">Pay with stripe</button>
+                        <button class="btn btn-primary" v-on:click="buy('razorpay')">Pay with razorpay</button>
+
+                        <div id="paypal-button-container" class="mt-4"></div>
+                    </div>
+                </div> 
+                </div>
+            </div>
+            <p v-else>Your cart is empty!</p>
+        {% else %}
+            <div class="container" >
+                <!-- <h3 style="margin-top: 200px; color: grey;"><span style="margin-left: 89px;">Such void! </span><br> Add some product to cart</h3> -->
+                <div class="noitem">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="item_text_notfound">
+                                <h3>You don't have any item in your cart</h3>
+                            <p>Explore our resources and mark the ones you like the most so you don’t lose sight of them.</p>
+                                <input type="submit" class="btn btn-primary btn-block" value="Look for item">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <img src="{% static 'assets/img/SVG/Asset 30void.svg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div v-if="errors.length > 0">
+            <article class="message is-danger"
+                v-for="error in errors">
+                <div class="message-header">
+                    <p>Error</p>
+                </div>
+                <div class="message-body">
+                    [[ error ]]
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="application/javascript" src="https://js.stripe.com/v3/"></script>
+<script type="application/javascript" src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script type="application/javascript" src="https://www.paypal.com/sdk/js?client-id={{ pub_key_paypal }}"></script>
+<script>
+    var productapp = new Vue({
+        el: '#cartapp',
+        delimiters: ['[[', ']]'],
+        store: store,
+        data () {
+            return {
+                errors: [],
+                first_name: '{{ first_name }}',
+                last_name: '{{ last_name }}',
+                email: '{{ email }}',
+                address: '{{ address }}',
+                zipcode: '{{ zipcode }}',
+                place: '{{ place }}',
+                phone: '{{ phone }}',
+                products: [{{ productsstring|safe }}],
+                coupon_value: 0,
+                coupon_code: '',
+                showCouponCodeError: false
+            }
+        },
+        mounted() {
+            const amount = this.totalCostWithCoupon.toString();
+
+            paypal.Buttons({
+                onClick: () => {
+                    if (this.validateForm() > 0) {
+                        return false;
+                    }
+                },
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: amount
+                            }
+                        }]
+                    })
+                },
+                onApprove: (data, actions) => {
+                    const formdata = {
+                        'first_name': this.first_name,
+                        'last_name': this.last_name,
+                        'email': this.email,
+                        'address': this.address,
+                        'zipcode': this.zipcode,
+                        'place': this.place,
+                        'phone': this.phone,
+                        'coupon_code': this.coupon_code,
+                        'gateway': 'paypal',
+                        'order_id': data.orderID
+                    };
+
+                    return actions.order.capture().then(function(details) {
+                        fetch('/api/create_checkout_session/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': '{{ csrf_token }}'
+                            },
+                            credentials: 'same-origin',
+                            body: JSON.stringify(formdata)
+                        })
+                        .then(function(response) {
+                            return response.json()
+                        })
+                        .then(function(result) {
+                            window.location.href = '/cart/success/';
+                        })
+                        .catch(function(error) {
+                            console.log('error:', error);
+                        });
+                    });
+                }
+            }).render('#paypal-button-container');
+        },
+        computed: {
+            numItems: function() {
+                return store.state.numItems
+            },
+            totalCost: function() {
+                return store.state.totalCost
+            },
+            totalCostWithCoupon: function() {
+                if (this.coupon_value > 0) {
+                    return store.state.totalCost * (parseInt(this.coupon_value) / 100);
+                } else {
+                    return store.state.totalCost;
+                }
+            }
+        },
+        methods: {
+            validateForm() {
+                this.errors = [];
+
+                if (this.first_name === '') {
+                    this.errors.push('First name is empty');
+                }
+
+                if (this.last_name === '') {
+                    this.errors.push('Last name is empty');
+                }
+
+                if (this.email === '') {
+                    this.errors.push('Email is empty');
+                }
+
+                if (this.address === '') {
+                    this.errors.push('Address is empty');
+                }
+
+                if (this.zipcode === '') {
+                    this.errors.push('Zip code is empty');
+                }
+
+                if (this.place === '') {
+                    this.errors.push('Place is empty');
+                }
+
+                if (this.phone === '') {
+                    this.errors.push('Phone is empty');
+                }
+
+                return this.errors.length;
+            },
+            applyCoupon() {
+                if (this.coupon_code !== '') {
+                    fetch('/api/can_use/?coupon_code=' + this.coupon_code, {
+                        method: 'GET'
+                    })
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then((data) => {
+                        if (data.amount) {
+                            this.showCouponCodeError = false
+                            this.coupon_value = parseInt(data.amount)
+                        } else {
+                            this.coupon_value = 0
+                            this.showCouponCodeError = true
+                        }
+                    });
+                } else {
+                    this.showCouponCodeError = true
+                }
+            },
+            buy(gateway) {
+                var data = {
+                    'first_name': this.first_name,
+                    'last_name': this.last_name,
+                    'email': this.email,
+                    'address': this.address,
+                    'zipcode': this.zipcode,
+                    'place': this.place,
+                    'phone': this.phone,
+                    'coupon_code': this.coupon_code,
+                    'gateway': gateway
+                };
+
+                if (this.validateForm() === 0) {
+                    if (gateway === 'stripe') {
+                        var stripe = Stripe('{{ pub_key }}');
+
+                        fetch('/api/create_checkout_session/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': '{{ csrf_token }}'
+                            },
+                            credentials: 'same-origin',
+                            body: JSON.stringify(data)
+                        })
+                        .then(function(response) {
+                            return response.json()
+                        })
+                        .then(function(session) {
+                            return stripe.redirectToCheckout({ sessionId: session.session.id })
+                        })
+                        .then(function(result) {
+                            if (result.error) {
+                                alert(result.error.message)
+                            }
+                        })
+                        .catch(function(error) {
+                            console.log('Error:', error);
+                        });
+                    } else if (gateway === 'razorpay') {
+                        fetch('/api/create_checkout_session/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': '{{ csrf_token }}'
+                            },
+                            credentials: 'same-origin',
+                            body: JSON.stringify(data)
+                        })
+                        .then(function(response) {
+                            return response.json()
+                        })
+                        .then(function(result) {
+                            const order_id = result.order.id;
+                            const amount = result.order.amount;
+
+                            var options = {
+                                'key': '{{ pub_key_razorpay }}',
+                                'amount': amount,
+                                'currency': 'INR',
+                                'name': 'Saul Gadgets',
+                                'description': 'A cool gadget store',
+                                'order_id': order_id,
+                                'handler': function(res) {
+                                    console.log('Handler');
+
+                                    fetch('/api/validate_payment/', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRFToken': '{{ csrf_token }}'
+                                        },
+                                        credentials: 'same-origin',
+                                        body: JSON.stringify({
+                                            'razorpay_payment_id': res.razorpay_payment_id,
+                                            'razorpay_order_id': res.razorpay_order_id,
+                                            'razorpay_signature': res.razorpay_signature
+                                        })
+                                    })
+                                    .then(function(response) {
+                                        return response.json();
+                                    })
+                                    .then(function(result) {
+                                        window.location.href = '/cart/success/';
+                                    })
+                                    .catch(function(error) {
+                                        console.log('Error:', error);
+                                    });
+                                },
+                                'prefill': {
+                                    'name': data.first_name + ' ' + data.last_name,
+                                    'email': data.email,
+                                    'contact': data.phone
+                                },
+                                'theme': {
+                                    'color': '#333333'
+                                }
+                            };
+
+                            var rzp = new Razorpay(options);
+                            rzp.open();
+                        })
+                        .catch(function(error) {
+                            console.log('Error', error);
+                        });
+                    }
+                }
+            },
+            incrementQuantity(product_id, quantity, price) {
+                console.log('Product_id:', product_id);
+
+                for (var i = 0; i < this.products.length; i++) {
+                    var product = this.products[i];
+
+                    if (product.id === product_id) {
+                        if (quantity < product.num_available) {
+                            var data = {
+                                'product_id': product_id,
+                                'update': true,
+                                'quantity': parseInt(quantity) + 1
+                            };
+
+                            store.commit('increment', 1);
+                            store.commit('changeTotalCost', parseFloat(price));
+
+                            fetch('/api/add_to_cart/', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRFToken': '{{ csrf_token }}'
+                                },
+                                credentials: 'same-origin',
+                                body: JSON.stringify(data)
+                            })
+                            .then((response) => {
+                                console.log(response)
+
+                                for (var i = 0; i < this.products.length; i++) {
+                                    var product = this.products[i];
+
+                                    if (product.id === product_id) {
+                                        this.products[i].quantity = parseInt(this.products[i].quantity) + 1;
+                                        this.products[i].total_price = parseInt(this.products[i].quantity) * parseFloat(this.products[i].price)
+                                    }
+                                }
+                            })
+                            .catch(function (error) {
+                                console.log('Error 2');
+                                console.log(error);
+                            })
+                        } else {
+                            alert('No more available in stock!');
+                        }
+                    }
+                }
+            },
+            decrementQuantity(product_id, quantity, price) {
+                console.log('Product_id:', product_id);
+
+                var data = {
+                    'product_id': product_id,
+                    'update': true,
+                    'quantity': parseInt(quantity) - 1
+                };
+
+                if (parseInt(quantity) - 1 === 0) {
+                    this.removeFromCart(product_id);
+                } else {
+                    store.commit('increment', -1);
+                    store.commit('changeTotalCost', -parseFloat(price));
+
+                    fetch('/api/add_to_cart/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        credentials: 'same-origin',
+                        body: JSON.stringify(data)
+                    })
+                    .then((response) => {
+                        console.log(response)
+
+                        for (var i = 0; i < this.products.length; i++) {
+                            var product = this.products[i];
+
+                            if (product.id === product_id) {
+                                this.products[i].quantity = parseInt(this.products[i].quantity) - 1;
+                                this.products[i].total_price = parseInt(this.products[i].quantity) * parseFloat(this.products[i].price)
+                            }
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log('Error 2');
+                        console.log(error);
+                    })
+                }
+            },
+            removeFromCart(product_id) {
+                console.log('Remove product_id:', product_id);
+
+                var data = {
+                    'product_id': product_id
+                };
+
+                fetch('/api/remove_from_cart/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    credentials: 'same-origin',
+                    body: JSON.stringify(data)
+                })
+                .then((response) => {
+                    console.log(response)
+
+                    this.products = this.products.filter(product => product.id !== product_id)
+                })
+                .catch(function (error) {
+                    console.log('Error 2');
+                    console.log(error);
+                })
+            }
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,34 @@
+<nav class=" altnav navbar navbar-expand-lg navbar-light bg-light" style="z-index: 1; margin-top: 0px;">
+    <div class=" container">
+    <button type="button" class="navbar-toggler altbtn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse1">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="altnav2 collapse navbar-collapse" id="navbarCollapse1">
+      <ul class="navbar-nav">
+        <div class="myspec_hoverstate">
+          <li class="myspec1"><a class="nav-link" href="{% url 'profile' %}">My Profile <span class="sr-only">(current)</span></a></li>
+        </div>
+        
+        <div class="myspec_hoverstate1">
+          <li class="myspec2"><a class="nav-link" href="{% url 'cart' %}">My Cart <span class="sr-only">(current)</span></a></li>
+        </div>
+
+        <div class="myspec_hoverstate2">
+          <li class="myspec3"><a class="nav-link" href="{% url 'myorder' %}">Purchased history <span class="sr-only">(current)</span></a></li>
+        </div>
+
+        <div class="myspec_hoverstate3">
+          <li class="myspec4"><a class="nav-link" href="{% url 'mysize' %}">My size <span class="sr-only">(current)</span></a></li>
+        </div>
+
+        <div class="myspec_hoverstate4">
+          <li class="myspec5"><a class="nav-link" href="{% url 'wallet' %}">Wallet<span class="sr-only">(current)</span></a></li>
+        </div>
+
+        <div class="myspec_hoverstate5">
+          <li class="myspec6"><a class="nav-link" href="{% url 'coupon' %}">Coupon<span class="sr-only">(current)</span></a></li>
+        </div>
+      </ul>
+    </div>
+    </div>
+</nav>

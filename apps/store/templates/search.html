@@ -1,0 +1,89 @@
+{% extends 'base2.html' %}
+
+{% block title %}Search | {% endblock %}
+
+{% block content %}
+    <div class="container">
+      <!-- <h1 class="title">Search</h1>
+      <h2 class="subtitle">Search term: "{{ query }}"</h2>
+      
+      <hr>
+      <form method="get" action="{% url 'search' %}">
+          <div class="columns is-multiline">
+              <div class="column is-4">
+                  <h2 class="is-size-5">Query</h2>
+
+                  <div class="form-group">
+                      <label>Search term</label>
+
+                      <div class="control">
+                          <input type="text" name="query" class="form-control" value="{{ query }}">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label>In stock</label>
+
+                      <div class="control">
+                          <input type="checkbox" name="instock"{% if instock %}checked="checked"{% endif %}>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="column is-4">
+                  <h2 class="is-size-5">Price range</h2>
+
+                  <div class="form-group">
+                      <label>From</label>
+                      <div class="control">
+                          <input type="number" name="price_from" class="form-control" value="{{ price_from }}">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label>To</label>
+                      <div class="control">
+                          <input type="number" name="price_to" class="form-control" value="{{ price_to }}">
+                      </div>
+                  </div>
+              </div>
+
+              <div class="column is-4">
+                  <h2 class="is-size-5">Sorting</h2>
+
+                  <div class="form-group">
+                      <label>Select sorting criteria</label>
+
+                      <div class="control">
+                          <div class="select">
+                              <select name="sorting" class="form-control">
+                                  <option value="-date_added"{% if sorting == '-date_added' %} selected{% endif %}>Newest first</option>
+                                  <option value="price"{% if sorting == 'price' %} selected{% endif %}>Price low-high</option>
+                                  <option value="-price"{% if sorting == '-price' %} selected{% endif %}>Price high-low</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="column is-12" style="margin-top: 30px;">
+                  <div class="form-group">
+                      <div class="control">
+                          <button class="button btn btn-danger">Search</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form> 
+</div>-->
+    <div style="margin-bottom: 471px;">
+        
+    </div>
+
+    <div class="row" style="margin-top: 5rem;">
+        {% with products as list_products %}
+            {% include 'parts/product_list.html' %}
+        {% endwith %}
+    </div>
+  </div>
+{% endblock %}

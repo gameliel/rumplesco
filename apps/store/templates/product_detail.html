@@ -1,0 +1,228 @@
+{% extends 'base2.html' %}
+
+{% block title %}{{ product.title }} | {% endblock %}
+
+{% block content %}
+    <div id="productapp">
+        <!-- <div class="cate-banner-over">
+            <div class="container">
+                <div class=" category text-left p-4">
+                    <div class="row">
+                      <div class="col">
+                        <h1 class="header-text">PICK & BUY 
+                        <br /> BEST OK DEALS
+                        </h1>
+                        <p class="cate-para">Select pay! select pay! Start picking what your choice<br />
+                        items, and pay before someone else finds them!</p><br />
+                        <input type="button" class="btn btn-outline-primary bbtnx" value="START PICKING">
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cate-banner"></div> -->
+        <div class="container" style="margin-top: 5rem;">
+            <div class="main">
+              <div class="row">
+                  <div class="col-md-4">
+                    <div id="carouselContent" class="carousel slide" data-bs-ride="carousel">
+                      <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselContent" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselContent" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      </div>  
+                      <div class="bradcrump">
+                        <a href="{% url 'frontpage'%}" class="crump"><h5>Back to Home</h5></a> 
+                      </div>      
+                      <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item active text-left p-4">
+                                    <img src="{{ product.image.url }}" class="bimg para d-block w-100" alt="test">
+                            </div>
+                            <div class="carousel-item text-left p-4">
+                                  <img src="{{ product.image.url }}" class="bimg para d-block w-100" alt="test">
+                            </div>
+                      </div>
+                      </div>
+                      <!-- product card ends here -->
+                  </div>
+                  <div class="col-md-6">
+                    <div class="sec-column">
+                      <div class="product-title">
+                        <h5>{{ product.title }}</h5>
+                      </div>
+                      <hr>
+                      <p class="pro_price m-price">N{{ product.price }}</p>
+                      <del class="pro_price"><p>N{{ product.discount_price}}</p> </del>
+                      <!-- product description -->
+                      <p>{{ product.description }}</p>
+                        <!-- <div class="timer checke-count">
+                          <i class="far fa-clock"></i>
+                        </div>
+                        <p class="checke-count count">3 Intrested </p><br> -->
+                        <button class="btn btn-primary btn-md my-0 p" type="submit" @click="addToCart({{ product.id }})" >
+                          <i class="fas fa-dolly pro_cart-btn"></i>
+                          Pick Item
+                        </button>
+                        <hr>
+                        <!-- <div class="pro-features">
+                          <p> {{ item.features}} </p>
+                        </div> -->
+                    </div>
+                  </div>            
+              </div>
+            </div>   
+          </div>
+        </div>
+        <hr>
+<div class="container">
+
+</div>
+        <div class="container">
+            <h2 class="subtitle">Related products</h2>
+            <div class="row">
+                    {% with related_products as list_products %}
+                    {% for p in list_products %}
+                    <div class="col-md-3 col-xl-3 col-sm-12 " style="margin-bottom:       35px;">                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                     <div class="content">
+                       <div class="brp">
+                         <div class="content-overlay"></div>
+                       <div class="pimg">
+                         <img src="{{ p.thumbnail.url }}" class="d-block w-100" alt="image here">
+                       </div>
+                       <div class="text-center">
+                       <p class="title">{{ p.title|slice:":18" }}</p>
+                         <p class="price">N{{ p.price }}</p>
+                         <del class="price"><p>N5000</p> </del>
+                       </div>
+                       </div>
+                       <div class="content-details fadeIn-bottom">
+                         <a href="{% url 'product_detail' p.category.slug p.slug %}"> <i class="fas fa-eye"></i></a>
+                         <a href=""> <i class="fab fa-opencart"></i></a>
+                         <!-- <p class="content-text">Interest (2)</p> -->
+                       </div>
+                     </div>
+                   </div>
+                   {% endfor %}
+                    {% endwith %}
+            </div>
+        <hr>
+
+        <h2 class="subtitle">Reviews</h2>
+
+        <div class="reviews-wrapper">
+            {% for review in product.reviews.all %}
+                <div class="notification space-below">
+                    <p>
+                        <strong>Date: </strong>{{ review.date_added|date:"Y-m-d" }},
+                        <strong>Stars: </strong>{{ review.stars }}
+                    </p>
+
+                    {{ review.content }}
+                </div>
+            {% empty %}
+                <div class="notification space-below">
+                    No reviews yet...
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="notification space-below">
+            {% if request.user.is_authenticated %}
+                <form method="post" action=".">
+                    {% csrf_token %}
+
+                    <div class="field">
+                        <label>Stars</label>
+
+                        <div clas="form-group">
+                            <div class="select">
+                                <select class="form-control" name="stars">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Content</label>
+
+                        <div class="form-group">
+                            <textarea class="form-control" name="content"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            {% else %}
+                <p>Please sign in to add review!</p>
+            {% endif %}
+        </div>
+    </div>
+        </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var productapp = new Vue({
+        el: '#productapp',
+        delimeters: ['[[', ']]'],
+        store: store,
+        data () {
+            return {
+                showMessage: false,
+                mainImage: '{{ product.image.url }}',
+                images: [{{ imagesstring|safe }}]
+            }
+        },
+        mounted() {
+            console.log('Mounted');
+        },
+        methods: {
+            changeMainImage(image) {
+                this.mainImage = image;
+            },
+            addToCart(product_id) {
+                console.log('Product_id:', product_id);
+
+                var data = {
+                    'product_id': product_id,
+                    'update': false,
+                    'quantity': 1
+                };
+
+                fetch('/api/add_to_cart/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    credentials: 'same-origin',
+                    body: JSON.stringify(data)
+                })
+                .then((response) => {
+                    console.log(response)
+
+                    this.showMessage = true
+
+                    store.commit('increment', 1);
+
+                    setTimeout(() => {
+                        this.showMessage = false
+                    }, 2000)
+                })
+                .catch(function (error) {
+                    console.log('Error 2');
+                    console.log(error);
+                })
+            }
+        }
+    });
+</script>
+{% endblock %}

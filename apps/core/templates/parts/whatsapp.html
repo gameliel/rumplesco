@@ -1,0 +1,56 @@
+<div class="whatsapp" class="whatsapp-wrapper" id="whatsapp-wrapper">
+<div class="news-background">
+    <div class="content text-center container">
+    <h4>Be the first to get notified</h4>
+    <p>Let's have your WhatsApp Number to notify you when a new bale opens</p>
+    <form v-on:submit.prevent="onSubmit">
+        <input type="tel" v-model="phone_number" name="phone_number" class="form-control form" placeholder="Enter Your Whatsap Number">
+        <input type="submit" value="Get notified" class="btn btn-secondary form-btn">
+    </form>
+    <p class="respect">We respect your privacy and anxiousness, so we never share your info
+        or send spams.</p>
+    </div>
+    <div style="color: white; text-align: center;" class="notification is-success" v-if="showSuccess">
+        Thank you! your contact was well received 
+    </div>
+</div>
+</div>
+
+<script>
+    var whatsapapp = new Vue({
+        el: '#whatsapp-wrapper',
+        data () {
+            return {
+                phone_number: '',
+                showSuccess: false
+            }
+        },
+        methods: {
+            onSubmit() {
+                console.log('onSubmit')
+
+                fetch('/api/add_whatsapp/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify({'phone_number': this.phone_number})
+                    })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log(data)
+
+                        this.showSuccess = true
+                        this.contact = ''
+                    })
+                    .catch(function(error) {
+                        this.showSuccess = false
+                        console.log('Error:', error);
+                    });
+            }
+        }
+    })
+</script>

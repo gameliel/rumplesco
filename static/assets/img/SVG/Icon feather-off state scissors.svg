@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16.633" height="17.055" viewBox="0 0 16.633 17.055">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #d9b691;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Icon_feather-off_state_scissors" data-name="Icon feather-off state scissors" transform="translate(-3.5 -3.5)">
+    <path id="Path_6950" data-name="Path 6950" class="cls-1" d="M9.518,7.009A2.509,2.509,0,1,1,7.009,4.5,2.509,2.509,0,0,1,9.518,7.009Z"/>
+    <path id="Path_6951" data-name="Path 6951" class="cls-1" d="M9.518,25.009A2.509,2.509,0,1,1,7.009,22.5,2.509,2.509,0,0,1,9.518,25.009Z" transform="translate(0 -7.963)"/>
+    <path id="Path_6952" data-name="Path 6952" class="cls-1" d="M22.116,6,12.18,15.936" transform="translate(-3.398 -0.664)"/>
+    <path id="Path_6953" data-name="Path 6953" class="cls-1" d="M21.7,21.72l4.625,4.617" transform="translate(-7.612 -7.618)"/>
+    <path id="Path_6954" data-name="Path 6954" class="cls-1" d="M12.18,12.18l3.245,3.245" transform="translate(-3.398 -3.398)"/>
+  </g>
+</svg>

@@ -1,0 +1,39 @@
+{% load static %}
+<footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <h4>Contact Info</h4>
+          <p><b>Phone:</b>0812 729 0291 <br>
+            08025303822 <br>
+          </p>
+          <p><b>Address:</b> Suite 3, Flat 1
+            Lydia Close Odlli road
+            Port Harcourt.
+            We accept:
+          </p>
+        </div>
+        <div class="col-md-3">
+          <h4>Get Help</h4>
+          <p><a href="{% url 'delivery' %}">Delivery Information</a></p>
+          <p><a href="{% url 'conditions' %}">Sale Terms & Conditions</a></p>
+          <p><a href="{% url 'returns' %}">Returns and Refunds</a></p>
+          <p><a href="{% url 'faq' %}">Shopping FAQ's</a></p>
+        </div>
+        <div class="col-md-3 footer-cate">
+          <h4>Popular Categories</h4>
+          {% for cate in menu_categories %}
+            <a href="{% url 'category_detail' cate.slug %}"><p>{{ cate.title }}</p></a>
+          {% endfor %}
+        </div>
+        <div class="col-md-3">
+          <h4>Let’s stay in touch</h4>
+          
+          {% include 'parts/newsletter.html' %}
+
+          <p>Keep up to date with our latest
+            news and special offers.</p>
+        </div>
+      </div>
+    </div>
+  </footer>

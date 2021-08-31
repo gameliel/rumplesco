@@ -1,0 +1,169 @@
+{% extends 'base2.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<!-- users nav -->
+<style>
+      .dis{
+            display: inline-block;
+      }
+      .form-control{
+            margin-left: 12px;
+            width: 75%;
+            border-top: 0px;
+            border-left: 0px;
+            border-right: 0px;
+            margin-bottom: 12px;
+      }
+      .card1 {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            /* border: 1px solid rgba(0, 0, 0, 0.125); */
+            border-radius: 16px !important;
+            box-shadow: 0 0 15px rgb(34 34 34 / 7%);
+      }
+      footer .btn {
+            margin-left: 11.7rem;
+            margin-top: -85px;
+            font-size: 12px;
+            }
+            .right-1 {
+            right: 28.4rem;
+            }
+            .center-v {
+            top: 50%;
+            transform: translateY(-50%);
+            }
+</style>
+
+{% include '_partials/simplenav.html' %}
+
+<section style="margin-top: 20px; margin-bottom: 20px;">
+      <div class="container">
+            <div class="row">
+            <form action="">
+                  <!-- Head measurement -->
+                  <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                              <div class="col-md-4">
+                                    <div class="card1" style="background-color: #f7f7f7;">
+                                          <img src="{% static 'assets/img/Asset 4.svg' %}" style="height: 266px;" alt="">
+                                    </div>
+                              </div>
+                              <div class="col-md-8">
+                                    <div class="card1" style="height: 267px;">
+                                          <div class="container spec_wrap" style="margin-top: 90px;">
+                                                <h4 class="text-center">Head Measurement</h4>
+                                                <!-- <form action=""> -->
+                                                      <div class="form-group">
+                                                            <label for="head_size" class="dis" >Head size </label>
+                                                            <input type="text" class=" dis form-control">
+                                                      </div>
+                                                <!-- </form> -->
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+                  <!-- Top body measurement -->
+                  <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                              <div class="col-md-4">
+                                    <div class="card1" style="background-color: #f7f7f7;">
+                                          <img src="{% static 'assets/img/Asset 3.svg' %}" style="margin-left:-53px; height: 330px; margin-bottom: -65px; width: 335px;" alt="">
+                                    </div>
+                              </div>
+                              <div class="col-md-8">
+                                    <div class="card1" style="height: 267px;">
+                                          <div class="container spec_wrap" style="margin-top: 10px;">
+                                                <h4 class="text-center">Top Body Measurement</h4>
+                                                <!-- <form action=""> -->
+                                                      <div class="form-group">
+                                                            <label for="head_size" class="dis" >Neck size </label>
+                                                            <input type="text" class=" dis form-control">
+                                                      </div>
+                                                      <div class="form-group">
+                                                            <label for="head_size" class="dis" >Shoulder </label>
+                                                            <input type="text" class=" dis form-control">
+                                                      </div>
+                                                      <div class="form-group">
+                                                            <label for="head_size" class="dis" >Chest </label>
+                                                            <input type="text" class=" dis form-control">
+                                                      </div>
+                                                      <div class="form-group">
+                                                            <label for="head_size" class="dis" >Sleeve </label>
+                                                            <input type="text" class=" dis form-control">
+                                                      </div>
+                                                <!-- </form> -->
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+                  <!-- Bottom body measurement -->
+                  <div class="col-md-6 col-sm-12" style="margin-top: 30px;">
+                        <div class="row">
+                              <div class="col-md-4">
+                                    <div class="card1" style="background-color: #f7f7f7;">
+                                          <img src="{% static 'assets/img/Asset 2.svg' %}" style="margin-top: -8px; margin-bottom: -30px; height: 294px;" alt="">
+                                    </div>
+                              </div>
+                              <div class="col-md-8">
+                                    <div class="card1" style="height: 257px;">
+                                          <div class="container spec_wrap" style="margin-top: 35px;">
+                                                <h4 class="text-center">Bottom Body Measurement</h4>
+                                                <!-- <form action=""> -->
+                                                      <div class="form-group">
+                                                            <label for="head_size" class="dis" >Waiste </label>
+                                                            <input type="text" class=" dis form-control">
+                                                      </div>
+                                                      <div class="form-group">
+                                                            <label for="head_size" class="dis" >Hips </label>
+                                                            <input type="text" class=" dis form-control">
+                                                      </div>
+                                                      <div class="form-group">
+                                                            <label for="head_size" class="dis" >Length </label>
+                                                            <input type="text" class=" dis form-control">
+                                                      </div>
+                                                <!-- </form> -->
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+                  <!-- Foot measurement -->
+                  <div class="col-md-6 col-sm-12" style="margin-top: 30px;"">
+                        <div class="row">
+                              <div class="col-md-4">
+                                    <div class="card1" style="background-color: #f7f7f7;">
+                                          <img src="{% static 'assets/img/Asset 1.svg' %}" style="margin-top:-214px; width: 195px; height: 470px;" alt="">
+                                    </div>
+                              </div>
+                              <div class="col-md-8">
+                                    <div class="card1" style="height: 257px;">
+                                          <div class="container spec_wrap" style="margin-top: 90px;">
+                                                <h4 class="text-center">Foot Measurement</h4>
+                                                <!-- <form action=""> -->
+                                                      <div class="form-group">
+                                                            <label for="head_size" class="dis" >foot size </label>
+                                                            <input type="text" class=" dis form-control">
+                                                      </div>
+                                                <!-- </form> -->
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </form>
+            </div>
+      </div>
+</section>
+{% endblock %}

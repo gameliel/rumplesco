@@ -1,0 +1,88 @@
+{% extends "base2.html" %} 
+
+{% block content %} 
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+<div class="container">
+    <form method="POST" enctype="multipart/form-data" style="padding-top: 50px;">
+        {% csrf_token %}
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">Username</label>
+            {{ u_form.username }}
+        </div>
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">Email</label>
+            {{ u_form.email }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">Biography</label>
+            {{ p_form.bio }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">First Name</label>
+            {{ p_form.first_name }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">Last Name</label>
+            {{ p_form.last_name }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">Phone Number</label>
+            {{ p_form.phone_number }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">City</label>
+            {{ p_form.city }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">State</label>
+            {{ p_form.state }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">Country</label>
+            {{ p_form.country }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">Address</label>
+            {{ p_form.address }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">Zipcode</label>
+            {{ p_form.zipcode }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">Place</label>
+            {{ p_form.place }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <label for="username">Place</label>
+            {{ p_form.image }}
+        </div>
+
+        <div class="form-group" style="padding-bottom: 15px;">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+    </form>
+</div>
+<script>
+    var form_fields = document.getElementsByTagName('input')
+
+    for (var field in form_fields){ 
+    form_fields[field].className += ' form-control'
+    }
+</script>
+
+{% endblock content %}

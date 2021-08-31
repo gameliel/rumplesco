@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
+  <defs>
+    <style>
+      .cls-1 {
+        isolation: isolate;
+      }
+
+      .cls-2 {
+        fill: red;
+        opacity: 0.76;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="clock_red" data-name="clock red" class="cls-1">
+    <path id="Path_6970" data-name="Path 6970" class="cls-2" d="M4,0H42a4,4,0,0,1,4,4V42a4,4,0,0,1-4,4H4a4,4,0,0,1-4-4V4A4,4,0,0,1,4,0Z"/>
+    <g id="Icon_ionic-md-time" data-name="Icon ionic-md-time" transform="translate(11.934 11.603)">
+      <path id="Path_6945" data-name="Path 6945" class="cls-3" d="M14.761,3.375a11.4,11.4,0,1,0,11.408,11.4A11.393,11.393,0,0,0,14.761,3.375Zm.011,20.514a9.117,9.117,0,1,1,9.117-9.117A9.117,9.117,0,0,1,14.772,23.889Z" transform="translate(-3.375 -3.375)"/>
+      <path id="Path_6946" data-name="Path 6946" class="cls-3" d="M18.247,10.688H16.538v6.838l5.983,3.589.855-1.4-5.128-3.041Z" transform="translate(-6.281 -4.989)"/>
+    </g>
+  </g>
+</svg>

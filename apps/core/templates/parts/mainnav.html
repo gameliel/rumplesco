@@ -1,0 +1,182 @@
+{% load static %}
+       <!-- begining of navigation  -->
+          <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="navbar-brand" href="{% url 'frontpage'%}"><img src="{% static 'assets/img/SVG/Asset 1RUMPLES.svg' %}" style="width: 17%;" alt=""></a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+			<div class="cart-circle"></div>
+			<a href="{% url 'cart' %}"><img src="{% static 'assets/img/SVG/cart.svg' %}" class="cart-icon" alt=""></a>
+			<div class="cart-count text-center " id="navbarapp">
+				  <p>[[ numItems ]]</p>
+			</div>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'frontpage' %}">Home</a>
+                </li>
+                <li class=" nav-item dropdown">
+                  <a class="dropbtn nav-link">Categories
+                  </a>
+                  <div class="dropdown-content dropdown-menu-full">
+                    <div class="container">
+                      <div class="row dropdown-content-lelft-m"  style="margin-top: 40px;">
+                        <div class="col-md-7">
+                          <div class="row">
+                            {% for category in menu_categories %}
+                            <div class="col-lg-3 col-md-3 col-sm-12 navbarhead">
+                              <h5>{{category.title}}</h5>
+                              {% if not category.children.all %}
+                              {% else %}
+                              <ul class="category_list">
+                                {% for subcategory in category.children.all %}
+                                <li><a href="{% url 'category_detail' subcategory.slug %}">{{ subcategory.title }}</a></li>
+                                {% endfor %}
+                              </ul>
+                              {% endif %}
+                            </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                        <div class="col-md-5 navbarhead">
+                          {% for tag in menu_tags %}
+                          <h5><a href="{% url 'category_detail' tag.slug %}">{{ tag.title }}</a></h5>
+                          {% endfor %}
+						  <a href="" class="btn btn-large btn-primary" style="width: 35%;" >Find my Spec</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+                </li>
+                <form class="" action="{% url 'search' %}" method="GET">
+                  <div class="form-group relative" >
+                      <input type="text" readonly class="form-control" data-bs-toggle="modal" data-bs-target="#staticBackdrop" name="query" placeholder="Search all your want">
+                      <button class="button-reset color-inherit db o-60 absolute center-v right-1 hover-primary6"><i class="fas fa-search"></i></button>
+                  </div>
+                </form>
+				<!-- modal test -->
+				<!-- Modal -->
+				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					<div class="modal-dialog dialogs">
+					<div class="modal-content">
+						<div class="modal-header">
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="container">
+							<div class="row"  style="margin-top: 40px;">
+								<div class="col-md-8">
+								  <div class="row">
+									{% for category in menu_categories %}
+									<div class="col-lg-3 col-md-3 col-sm-12 navbarhead">
+									  <h5>{{category.title}}</h5>
+									  {% if not category.children.all %}
+									  {% else %}
+									  <ul class="category_list">
+										{% for subcategory in category.children.all %}
+										<li><a href="{% url 'category_detail' subcategory.slug %}">{{ subcategory.title }}</a></li>
+										{% endfor %}
+									  </ul>
+									  {% endif %}
+									</div>
+									{% endfor %}
+								  </div>
+								</div>
+								<div class="col-md-4 navbarhead">
+								  {% for tag in menu_tags %}
+								  <h5><a href="{% url 'category_detail' tag.slug %}">{{ tag.title }}</a></h5>
+								  {% endfor %}
+								  <a href="" class="btn btn-large btn-primary" style="width: 35%;" >Find my Spec</a>
+								</div>
+							  </div>
+						</div>
+						<div class="modal-body">
+							<form class="" action="{% url 'search' %}" method="GET">
+								<div class="form-group relative" >
+									<input type="text" class="form-control" name="query" placeholder="Search all your want">
+									<button class="button-reset color-inherit db o-60 absolute center-v right-1 hover-primary6"><i class="fas fa-search"></i></button>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+						<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Understood</button> -->
+						</div>
+					</div>
+					</div>
+				</div>
+				<!-- modal test -->
+                  {% if request.user.is_authenticated %}
+				  <li class="dropdowns show" >
+					<a class="nav-link dropbtns  dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">My Spec</a>
+					<ul class="dropdown_spec dropdown-menu" aria-labelledby="dropdownMenuLink" id="myDrop">
+						<div class="container">
+							<div class="row">
+								<div class="personal_details">
+									<div class=" col-md-4" class="profile-img">
+										<img class="userpic rounded-circle" src="{{ user.profile.image.url }}" alt="post_img" alt="uer">
+									</div>
+									<div class="col-md-8 p_details">
+										<p>{{ request.user.get_username}}</p>
+										<p class="mail">{{ request.user.email }}</p>
+										<a href="{% url 'edit' %}" class="btn btn-primary">Edit Profile</a>
+									</div>
+								</div>
+							</div>
+							<hr>
+							<!-- my cart -->
+							<div class="myspec_hoverstate">
+								<li class="myspec1"><a href="{% url 'cart' %}">My cart</a></li>
+							</div>
+
+							<!-- purchased history -->
+							<div class="myspec_hoverstate1">
+								<li class="myspec2"><a href="{% url 'myorder' %}">Purchased history</a></li>
+							</div> 
+
+							<!-- my size -->
+							 <div class="myspec_hoverstate2">
+								<li class="myspec3"><a href="{% url 'listing' %}">My size</a></li>
+							</div> 
+							<hr>
+
+							<!-- notification -->
+							<div class="myspec_hoverstate3">
+								<li class="myspec4"><a href="{% url 'notification' %}">Notification</a></li>
+							</div>
+							
+							<!-- wallet -->
+							<div class="myspec_hoverstate4">
+								<li class="myspec5"><a href="{% url 'wallet' %}">Wallet</a></li>
+							</div>
+							
+							<!-- coupon -->
+							<div class="myspec_hoverstate5">
+								<li class="myspec6"><a href="{% url 'coupon' %}">Coupon</a></li>
+							</div>
+
+							<hr>
+							<div class="myspec_hoverstate6">
+								<li class="myspec7"><a href="{% url 'logout' %}">Logout</a></li>
+							</div> 
+						</div>
+					</ul>
+				  </li>
+					{% else %}
+						<div class="nav-item">
+							<div class="buttons">
+								<a href="{% url 'register' %}" class="sign button is-primary"><strong>Sign up</strong></a>
+								<a href="{% url 'login' %}" class="sign button is-light">Log in</a>
+								<!-- <button type="button" class="btn btn-sm btn-rounded btn-success float-right" data-toggle="modal" data-target="#request-compose">Make an Enquiry</button> -->
+							</div>
+						</div>
+					{% endif %}
+                </div>
+            </ul>
+<!-- cart was here exactly -->
+		</nav>

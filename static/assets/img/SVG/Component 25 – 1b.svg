@@ -1,0 +1,29 @@
+<svg id="Component_25_1b" data-name="Component 25 – 1b" xmlns="http://www.w3.org/2000/svg" width="58" height="58" viewBox="0 0 58 58">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #fff;
+        stroke-width: 2px;
+        opacity: 0.25;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Ellipse_1" data-name="Ellipse 1" class="cls-1">
+    <circle class="cls-3" cx="29" cy="29" r="29"/>
+    <circle class="cls-4" cx="29" cy="29" r="28"/>
+  </g>
+  <path id="cart_2" class="cls-2" d="M432.31,525.867a2.512,2.512,0,0,0,2.461-2.027l1.261-6.3a2.521,2.521,0,0,0-2.467-3.016H421.014v-1.261A1.261,1.261,0,0,0,419.753,512h-2.51a1.261,1.261,0,1,0,0,2.521H418.5v12.606a2.521,2.521,0,1,0,2.51,2.521H429.8a2.511,2.511,0,1,0,2.511-2.521h-11.3v-1.261Zm1.261-8.825-1.261,6.3h-11.3v-6.3h12.551Z" transform="translate(-397.061 -493.059)"/>
+</svg>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Confirmation</title>
+	<style type="text/css">
+		h1{
+			color: burlywood;
+		}
+	</style>
+</head>
+<body>
+	{% if success %}
+
+	<p>Thank you for confirming your account</p>
+	
+	{% else %}
+	
+	<p> Error! invalid token </p>
+	
+	{% endif %}
+</body>
+</html>

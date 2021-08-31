@@ -1,0 +1,44 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block content %}
+<main class="container my-4">
+	<div class="row">
+		<!-- Filters -->
+		<div class="col-md-3">
+			{% include 'parts/filters.html' %}
+		</div>
+		<div class="col-md-9">
+			<!-- Products -->
+			<h3 class="mb-4 border-bottom pb-1">
+				Filter My Size			</h3>
+			<div class="row" id="filteredProducts">
+				<p class="ajaxLoader">Loading...</p>
+                {% for p in data %}
+                <div class="col-lg-3 col-md-3 col-xm-3 col-sm-12 product-box" style="margin-bottom:35px;">                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                <div class="content">
+                    <div class="brp">
+                    <div class="content-overlay"></div>
+                    <div class="pimg">
+                    <img src="/media/{{ p.productattribute_set.first.image }}" class="d-block w-100" alt="image here">
+                    </div>
+                    <div class="text-center">
+                    <p class="title">{{ p.title|slice:":18" }}</p>
+                    <p class="price">N{{ p.price }}</p>
+                    <del class="price"><p>N5000</p> </del>
+                    </div>
+                    </div>
+                    <div class="content-details fadeIn-bottom">
+                    <a href="{% url 'product_detail' p.category.slug p.slug %}"> <i class="fas fa-eye"></i></a>
+                    <a href=""> <i class="fab fa-opencart"></i></a>
+                    <a class="btn btn-sm btn-danger add-wishlist" data-product="{{product.id}}"><i style="margin-left: -340px; margin-top: -30px;" class="fa fa-heart"></i></a>
+                    <!-- <p class="content-text">Interest (2)</p> -->
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+			</div>
+			<p class="my-4 text-center"><button id="loadMore" data-total="{{total_data}}" data-limit="3" class="btn btn-dark btn-sm">Load More <i class="fa fa-sync load-more-icon"></i></button></p>
+		</div>
+	</div>
+</main>
+{% endblock %}
